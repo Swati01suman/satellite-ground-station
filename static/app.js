@@ -137,3 +137,27 @@ $("briefingBtn").addEventListener("click", () => {
 });
 
 loadPlace("Patna");
+async function updateTelemetry() {
+  try {
+    const response = await fetch("/api/telemetry");
+    const telemetry = await response.json();
+
+    $("telemetryTemperature").textContent =
+      displayValue(telemetry.temperature, " °C");
+
+    $("telemetryBattery").textContent =
+      displayValue(telemetry.battery, " %");
+
+    $("telemetryAltitude").textContent =
+      displayValue(telemetry.altitude, " km");
+
+    $("telemetrySignal").textContent =
+      displayValue(telemetry.signal, " dBm");
+
+  } catch (error) {
+    console.error("Telemetry update failed:", error);
+  }
+}
+
+updateTelemetry();
+setInterval(updateTelemetry, 2000);

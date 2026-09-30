@@ -4,6 +4,7 @@ from urllib.parse import quote
 import requests
 from flask import Flask, jsonify, render_template, request
 from dotenv import load_dotenv
+from telemetry import generate_telemetry
 
 load_dotenv()
 
@@ -247,6 +248,9 @@ def build_dashboard_data(place):
         "briefing": briefing,
     }
 
+@app.route("/api/telemetry")
+def telemetry():
+    return jsonify(generate_telemetry())
 
 @app.route("/")
 def index():
