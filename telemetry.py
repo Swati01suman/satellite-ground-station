@@ -3,8 +3,11 @@ import time
 from datetime import datetime
 
 
+LOG_FILE = "logs/telemetry.log"
+
+
 def generate_telemetry():
-    return {
+    telemetry = {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "temperature": round(random.uniform(20, 35), 2),
         "battery": round(random.uniform(60, 100), 2),
@@ -12,6 +15,17 @@ def generate_telemetry():
         "signal": round(random.uniform(-90, -60), 2),
         "voltage": round(random.uniform(11, 14), 2),
     }
+
+    with open(LOG_FILE, "a") as log:
+        log.write(
+            f"{telemetry['timestamp']} | "
+            f"TEMP={telemetry['temperature']} | "
+            f"BATTERY={telemetry['battery']} | "
+            f"ALTITUDE={telemetry['altitude']} | "
+            f"SIGNAL={telemetry['signal']}\n"
+        )
+
+    return telemetry
 
 
 if __name__ == "__main__":
