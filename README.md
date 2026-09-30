@@ -37,13 +37,4 @@ Then open:
 
 http://127.0.0.1:5000
 
-## Next milestones
 
-1. Connect GNews.
-2. Add country capital + continent.
-3. Connect Groq briefing.
-4. Connect `satellite/simulator.py` to telemetry.
-5. Add charts and logs.
-6. Dockerize.
-7. GitHub Actions CI/CD.
-8. Deploy to AWS EC2.
