@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Satellite Ground Station</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="satellite">🛰️</div>
+      <div>
+        <h1>SATELLITE GROUND STATION</h1>
+        <p>YOUR REAL-TIME EARTH </p>
+      </div>
+    </div>
+    <div class="system"><span></span> SYSTEM ONLINE</div>
+  </header>
+
+  <div class="layout">
+        <main class="content">
+      <form id="searchForm" class="searchbar">
+        <span>⌕</span>
+        <input id="placeInput" value="Patna" placeholder="Enter a city or place...">
+        <button>Search</button>
+      </form>
+
+      <div id="error" class="error hidden"></div>
+
+      <section class="grid top-grid">
+        <article class="card location-card">
+          <div class="card-title">⌖ LOCATION <small>LIVE DATA</small></div>
+          <div class="location-main">
+            <div>
+              <h2 id="placeName">Patna</h2>
+              <p id="placeCountry">Bihar, India</p>
+              <div class="facts">
+                <div><b>Country</b><span id="country">—</span></div>
+                <div><b>State</b><span id="state">—</span></div>
+                <div><b>Latitude</b><span id="lat">—</span></div>
+                <div><b>Longitude</b><span id="lon">—</span></div>
+                <div><b>Timezone</b><span id="timezone">—</span></div>
+              </div>
+            </div>
+            <div class="city-art">⌖</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">☼ WEATHER <small>LIVE DATA</small></div>
+          <div class="weather-main">
+            <div class="sun">☀</div>
+            <div><strong id="temp">—</strong><p id="condition">Loading...</p></div>
+          </div>
+          <div class="metric-row"><span>◌ Humidity</span><b id="humidity">—</b></div>
+          <div class="metric-row"><span>≋ Wind Speed</span><b id="wind">—</b></div>
+          <div class="metric-row"><span>◉ Pressure</span><b id="pressure">—</b></div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">♧ AIR QUALITY <small>LIVE DATA</small></div>
+          <div class="aqi-layout">
+            <div class="aqi-ring"><div><small>AQI</small><strong id="aqi">—</strong><em id="aqiLabel">—</em></div></div>
+            <div class="pollutants">
+              <div>PM2.5 <b id="pm25">—</b></div>
+              <div>PM10 <b id="pm10">—</b></div>
+              <div>NO₂ <b id="no2">—</b></div>
+              <div>SO₂ <b id="so2">—</b></div>
+              <div>O₃ <b id="o3">—</b></div>
+            </div>
+          </div>
+          <div class="aqi-scale"><span>0-50 Good</span><span>51-100 Moderate</span><span>101-150</span><span>151-200</span></div>
+        </article>
+      </section>
+
+      <section class="grid middle-grid">
+        <article class="card map-card">
+          <div class="card-title">⌖ LOCATION MAP <small id="coords">—</small></div>
+          <div id="map"></div>
+        </article>
+
+        <article class="card image-card">
+          <div class="card-title">▣ PLACE IMAGE</div>
+          <div id="placeImage" class="place-image empty">Image will appear here</div>
+          <div class="image-caption" id="imageCaption">—</div>
+        </article>
+
+        <article class="card news-card">
+          <div class="card-title">▤ LOCAL NEWS — TOP 5</div>
+          <div id="newsList" class="news-list">
+            <div class="muted">Add GNEWS_API_KEY to load local news.</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid bottom-grid">
+        <article class="card briefing-card">
+          <div class="card-title">🤖 AI MISSION BRIEFING <small>POWERED BY GROQ</small></div>
+          <div id="briefing" class="briefing">Loading mission briefing...</div>
+          <button id="briefingBtn" class="primary">✦ Generate New Briefing</button>
+        </article>
+
+        <article class="card telemetry-card">
+          <div class="card-title">⌁ SATELLITE TELEMETRY <small>SIMULATOR</small></div>
+          <div class="telemetry-grid">
+            <div><span>Temperature</span><b>31.4 °C</b><em>Normal</em></div>
+            <div><span>Battery</span><b>87.2 %</b><em>Normal</em></div>
+            <div><span>Altitude</span><b>542 km</b><em>Normal</em></div>
+            <div><span>Signal</span><b>-67 dBm</b><em>Strong</em></div>
+          </div>
+          <p class="muted">This panel will connect to your existing satellite/simulator.py later.</p>
+        </article>
+      </section>
+
+      <footer class="statusbar">
+        <b>◉ GROUND STATION STATUS</b>
+        <span>● Location API <b>Online</b></span>
+        <span>● Weather API <b>Online</b></span>
+        <span>● Air Quality API <b>Online</b></span>
+        <span>● News API <b id="newsStatus">Not configured</b></span>
+        <span>● AI Service <b id="aiStatus">Template</b></span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
