@@ -47,3 +47,13 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/swati01suman/satellite-ground-station:latest
+
+  deploy:
+    needs: build-test-push
+    runs-on: self-hosted
+
+    steps:
+      - name: Restart Kubernetes deployment
+        run: |
+          kubectl rollout restart deployment/satellite-ground-station
+          kubectl rollout status deployment/satellite-ground-station --timeout=120s
