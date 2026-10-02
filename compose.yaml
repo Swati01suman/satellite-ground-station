@@ -1,0 +1,8 @@
+services:
+  satellite-ground-station:
+    build: .
+    container_name: satellite-ground-station
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env

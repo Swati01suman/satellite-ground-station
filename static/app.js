@@ -60,7 +60,6 @@ function renderImage(image, place) {
     box.textContent = "No place image found";
     $("imageCaption").textContent = place;
   }
-}
 
 function updateMap(lat, lon, name) {
   if (!map) {
@@ -160,4 +159,4 @@ async function updateTelemetry() {
 }
 
 updateTelemetry();
-setInterval(updateTelemetry, 2000);
+setInterval(updateTelemetry, 30000);

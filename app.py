@@ -233,8 +233,23 @@ Use only the supplied facts. Do not invent news, measurements, causes, or health
 
 def build_dashboard_data(place):
     location = get_location(place)
-    weather = get_weather(location["latitude"], location["longitude"])
-    air = get_air_quality(location["latitude"], location["longitude"])
+
+    try:
+        weather = get_weather(
+            location["latitude"],
+            location["longitude"]
+        )
+    except requests.RequestException:
+        weather = {}
+
+    try:
+        air = get_air_quality(
+            location["latitude"],
+            location["longitude"]
+        )
+    except requests.RequestException:
+        air = {}
+
     image = get_place_image(location["name"])
     news = get_news(location["name"])
     briefing = get_ai_briefing(location, weather, air, news)

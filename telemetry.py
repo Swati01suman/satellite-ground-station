@@ -1,10 +1,11 @@
 import random
 import time
+import os
 from datetime import datetime
 
 
 LOG_FILE = "logs/telemetry.log"
-
+os.makedirs("logs", exist_ok=True)
 
 def generate_telemetry():
     telemetry = {

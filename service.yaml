@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: satellite-ground-station
+spec:
+  selector:
+    app: satellite-ground-station
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: NodePort

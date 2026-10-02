@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: satellite-ground-station
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: satellite-ground-station
+  template:
+    metadata:
+      labels:
+        app: satellite-ground-station
+    spec:
+      containers:
+        - name: satellite-ground-station
+          image: satellite-ground-station:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: satellite-ground-station-secrets            
